@@ -1,7 +1,27 @@
 body {
-    background-color: #949ca6;
+    background-color: #a6a8aa;
  }
 em {
     color: #601c2e;
     font-style: normal;
+}
+strong {
+    color: rgb(170, 112, 35);
+}
+.display1 {
+    background-color: aliceblue;
+    display: inline;
+}
+p {
+    font-family: "Old English Text MT", serif;
+}
+ul, ol {
+    color: white;
+    font-weight: bold;
+}
+table { background-color: aliceblue; }
+#content { 
+    padding: 5px;
+    border: 5px solid black;
+    margin: 5px;
 }
