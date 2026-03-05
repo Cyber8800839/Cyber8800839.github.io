@@ -10,7 +10,7 @@ strong {
 }
 .display1 {
     background-color: aliceblue;
-    display: inline;
+    display: block;
 }
 p {
     font-family: "Old English Text MT", serif;
