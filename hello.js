@@ -6,15 +6,15 @@ function startgame(user) {
     let choice = prompt("Enter your choice:");
     switch (choice) {
         case "1":
-            draft(user);                                   // Change the scene.
+            draft(user);                                 // Change the scene.
             return;
         case "2":
             console.log("End.");
             endgame();                                          // Ending 1.
             return;
         default:
-            console.log(choice+" is not valid. Please enter 1 or 2.");
-            startgame(user);                                    // Try the same scene again.
+            console.log("Invalid choice.");
+            startgame(user);                                 // Try the same scene again.
     }
 }
 /*
@@ -24,20 +24,33 @@ function endgame() {
     console.log("");
     console.log("Game over. Refresh to play again.");
     console.log("");
-    console.log("This was one of 4 unique endings. Try different choices to see the others!");
+    console.log("This was one of 5 unique endings. Try different choices to see the others!");
 }
 /*
  * Change the scene to the draft.
  *
  * Parameters:
  * - user: a string with the user's name
- * - Chiefs: a boolean tracking whether the player has selected the Chiefs
- * - Seahawks: a boolean tracking whether the player has selected the Seahawks
- * - Dolphins: a boolean tracking whether the player has selected the Dolphins
- * - Patriots: a boolean tracking whether the player has selected the Patriots
+ * 
+ *  Description:
+  * - Presents the player with 4 team choices
+  * - Team choice does NOT affect ending, but is a personal preference
+  * - Presents the player with 2 work ethic choices
+  * - Presents the player with 2 choices in the middle of the season
+  * - Each choice leads to a unique ending (4 total)
+  * - Re-prompts the user if input is invalid
  */
-function draft(user, Chiefs, Seahawks, Dolphins, Patriots) {
-    console.log("You are a football player taking part in the 2026 NFL draft. You have been selected by the "+Chiefs+", but you also have received offers to play for the "+Seahawks+", "+Dolphins+" or the "+Patriots+". Do you:");
+function draft(user) {
+    let Chiefs = "Chiefs";
+    let Seahawks = "Seahawks";
+    let Dolphins = "Dolphins";
+    let Patriots = "Patriots";
+
+    // ROUND 1
+    console.log("");
+    console.log(user + ", you are a football player entering the 2026 NFL Draft.");
+    console.log("You have offers from multiple teams. Do you:");
+    console.log("");
 
     console.log("1. Select the "+Chiefs+", and start your career there.");
     console.log("2. Select the "+Seahawks+", and start your career there.");
@@ -45,34 +58,99 @@ function draft(user, Chiefs, Seahawks, Dolphins, Patriots) {
     console.log("4. Select the "+Patriots+", and start your career there.");
     console.log("");
 
-    let teamchoice = prompt("Enter your team choice:");
-    switch (teamchoice) {
+    let teamChoice = prompt("Enter your team choice:");
+    let team = "";
+    switch (teamChoice) {
         case "1":
-            if (Chiefs) {
-                console.log("You are drafted by the "+Chiefs+". You have a solid rookie year, but the team fails to make the playoffs. You have a long and successful career in Kansas City, but never win a Super Bowl.");
-            }  
-            return;
+            console.log("You are drafted by the "+Chiefs+"."); 
+            team = Chiefs;
+            break;
+
         case "2":
-            if (Seahawks) {
-                console.log("You are drafted by the "+Seahawks+". You have a stellar rookie year, and go on to win the Super Bowl, winning MVP as well. You are hailed as a hero in Seattle, and have a long and successful career there.");
-            }                
-            return;
+            console.log("You are drafted by the "+Seahawks+"."); 
+            team = Seahawks;
+            break;
+
         case "3":
-            if (Dolphins) {
-                console.log("You are drafted by the "+Dolphins+". You live the lavish life in Miami, but fall short of expectations on the field. You have a short career in Miami, and are out of the league by your third season. You go on to work as a high school football coach in Florida.");
-            }
-            return;
+            console.log("You are drafted by the "+Dolphins+".");
+            team = Dolphins;
+            break;
+
         case "4":
-            if (Patriots) {
-                console.log("You are drafted by the "+Patriots+". You have an excellent rookie year, making it to the Super Bowl. However, you are released after the season, and go on to work as an NFL analyst for ESPN.");
-            }
-            return;
+            console.log("You are drafted by the "+Patriots+".");
+            team = Patriots;
+            break;
+
         default:
-            console.log(teamchoice+" is not valid. Please enter a number corresponding to your choice.");
-            draft(user, Chiefs, Seahawks, Dolphins, Patriots);            // Try the same scene again.
+            console.log("Invalid choice.");
+            draft(user);            // Try the same scene again.
+    }
+
+    // ROUND 2
+    
+    console.log("");
+    console.log("Before your rookie season, do you:");
+    console.log("1. Train extremely hard");
+    console.log("2. Enjoy fame and relax");
+
+    let workChoice = prompt("Enter your choice:");
+
+    // ROUND 3
+    console.log("");
+
+    if (workChoice === "1") {
+        console.log("You push yourself hard every day.");
+
+        console.log("Mid-season, do you:");
+        console.log("1. Play through an injury");
+        console.log("2. Sit out and recover");
+
+        let injuryChoice = prompt("Enter your choice:");
+
+        if (injuryChoice === "1") {
+            console.log("");
+            console.log("You play through the injury and lead the " + team + " to a championship!");
+            console.log("You are remembered as a legend.");
+        } else if (injuryChoice === "2") {
+            console.log("");
+            console.log("You recover fully and have a long, successful career with the " + team + ".");
+            console.log("You make multiple Pro Bowls but never win a Super Bowl.");
+        } else {
+            console.log("Invalid choice.");
+            draft(user);
+            return;
+        }
+
+    } else if (workChoice === "2") {
+        console.log("You enjoy the spotlight.");
+
+        console.log("Your performance drops. Do you:");
+        console.log("1. Refocus and train");
+        console.log("2. Continue partying");
+
+        let fameChoice = prompt("Enter your choice:");
+
+        if (fameChoice === "1") {
+            console.log("");
+            console.log("You turn things around and become a solid player.");
+        } else if (fameChoice === "2") {
+            console.log("");
+            console.log("Your career falls apart quickly.");
+            console.log("You are out of the league in 3 years.");
+        } else {
+            console.log("Invalid choice.");
+            draft(user);
+            return;
+        }
+
+    } else {
+        console.log("Invalid choice.");
+        draft(user);
+        return;
     }
     endgame()
 }
 
+//Start game by asking for user's name.
 let user = prompt("What is your name?");
 startgame(user);
