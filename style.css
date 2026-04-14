@@ -28,7 +28,44 @@ table {
     border: 5px solid black;
     margin: 5px;
 }
-.float {
-    float: right;
-    font-size: 40px;
+
+.collapsible-wrapper {
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+
+.collapsible-header {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    font-family: "Monotype Corsiva", cursive;
+    padding: 15px;
+    margin: 0;
+    width: 100%;
+    text-align: left;
+    justify-content: space-between;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.collapsible-header:hover {
+    background-color: #ccc;
+}
+
+.icon {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    font-weight: bold;
+}
+
+.gallery-content {
+    padding: 0 15px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: white;
+}
+
+.collapsible-header.active .icon {
+    transform: rotate(45deg);
 }
